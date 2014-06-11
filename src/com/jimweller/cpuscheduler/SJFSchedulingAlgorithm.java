@@ -1,55 +1,30 @@
 /** SJFSchedulingAlgorithm.java
- * 
+ *
  * A shortest job first scheduling algorithm.
  *
- * @author: Kyle Benson
- * Winter 2013
+ * @author: Name1, Name2, Name3
+ * Spring 2014
  *
  */
 package com.jimweller.cpuscheduler;
 
 import java.util.*;
 
-
-public class SJFSchedulingAlgorithm extends BaseSchedulingAlgorithm implements OptionallyPreemptiveSchedulingAlgorithm {
+// for this algorithm, we just need to extend from priority algorithm and change the priority to be the job time
+public class SJFSchedulingAlgorithm extends PrioritySchedulingAlgorithm {
     private boolean preemptive;
-
+    
+    private PriorityQueue<Process> pQ;
+    
     SJFSchedulingAlgorithm(){
-    }
-
-    /** Add the new job to the correct queue.*/
-    public void addJob(Process p){
-
+    	activeJob = null;
+    	preemptive = false;
+    	pQ = new PriorityQueue<Process>(8, new SJFComparator());
     }
     
-    /** Returns true if the job was present and was removed. */
-    public boolean removeJob(Process p){
-    }
-
-    /** Transfer all the jobs in the queue of a SchedulingAlgorithm to another, such as
-	when switching to another algorithm in the GUI */
-    public void transferJobsTo(SchedulingAlgorithm otherAlg) {
-    }
-
-    /** Returns the next process that should be run by the CPU, null if none available.*/
-    public Process getNextJob(long currentTime){
-    }
-
+    @Override
     public String getName(){
 	return "Shortest job first";
     }
 
-    /**
-     * @return Value of preemptive.
-     */
-    public boolean isPreemptive(){
-	return preemptive;
-    }
-    
-    /**
-     * @param v  Value to assign to preemptive.
-     */
-    public void setPreemptive(boolean  v){
-	preemptive = v;
-    }
 }
